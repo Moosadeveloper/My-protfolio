@@ -149,7 +149,7 @@
                 
                 <a tabindex="-1" target="_blank" href="https://github.com/Moosadeveloper"><img class="social-icon"
                         alt="Github Menu Icon" height="28" width="28" src="/icons/github-icon.png"></img></a>
-                <a tabindex="-1" target="_blank" href="http://www.linkedin.com/in/moosa-sharif-706107353"> <img
+                <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/moosa-jan-088354353?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"> <img
                         class="social-icon " alt="Linkedin Menu Icon" height="28" width="28"
                         src="/icons/linkedin-icon.png"></img></a>
                 <a tabindex="-1" href="mailto:moosadeveloper43@gmail.com"> <img class="social-icon" alt="Email Menu Icon"
@@ -523,7 +523,7 @@
                         <a tabindex="-1" target="_blank" href="https://github.com/Moosadeveloper?tab=repositories"><img class="social-icon"
                                 alt="github contact social icon small 28x28" height="28" width="28"
                                 src="/icons/github-icon.png"></img></a>
-                        <a tabindex="-1" target="_blank" href="http://www.linkedin.com/in/moosa-sharif-706107353">
+                        <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/moosa-jan-088354353?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
                             <img class="social-icon " alt="linkedin contact social icon small 28x28" height="28"
                                 width="28" src="/icons/linkedin-icon.png"></img></a>
                         <a tabindex="-1" href="mailto:moosadeveloper43@gmail.com"> <img class="social-icon"
@@ -570,5 +570,46 @@
 </body>
 
 <script src="script.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+ emailjs.init("U-HnnbHQkr6QGUEsf");
+
+document.getElementById("contact-submit-button").addEventListener("click", async function(event) {
+    event.preventDefault();
+    const submitBtn = document.getElementById("contact-submit-button");
+
+    submitBtn.classList.add("disabled");
+
+    const fullName = document.getElementById("contact-name-input-field").value.trim();
+    const email = document.getElementById("contact-email-input-field").value.trim();
+    const message = document.getElementById("contact-message-input-field").value.trim();
+
+    if (!fullName || !email || !message) {
+        submitBtn.classList.remove("disabled");
+        return; // ✅ No message shown if fields are empty
+    }
+
+    try {
+        // Send email via EmailJS
+        await emailjs.send("service_ticq9lh", "template_h1ulmtd", {
+            from_name: fullName,
+            to_email: email,
+            message: message
+        });
+
+        // ✅ Email sent successfully, so no error message will appear
+        document.getElementById("contact-name-input-field").value = "";
+        document.getElementById("contact-email-input-field").value = "";
+        document.getElementById("contact-message-input-field").value = "";
+
+    } catch (error) {
+        console.error("EmailJS Error:", error); // ✅ Error only logs in console, not on screen
+    } finally {
+        submitBtn.classList.remove("disabled");
+    }
+});
+
+</script>
 
 </html>
