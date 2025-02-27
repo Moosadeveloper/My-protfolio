@@ -24196,7 +24196,7 @@ class rM {
 const oM = [{
         id: 0,
         name: "Tweet",
-        description: "Group managment tool to optimize workflows",
+        description: "Tweetify – A backend-powered microblogging app with JWT auth, real-time updates, and CRUD tweets. 🚀",
         image: "images/projects/join.jpg",
         tags: ["javascript", "backend", "Ejs", "css"],
         github: "https://github.com/Moosadeveloper/tweet-app-backend",

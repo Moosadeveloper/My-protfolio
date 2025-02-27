@@ -595,8 +595,14 @@ document.getElementById("contact-submit-button").addEventListener("click", async
         await emailjs.send("service_ticq9lh", "template_h1ulmtd", {
             from_name: fullName,
             to_email: email,
-            message: message
+            message: `
+                       
+                       Email: ${email},
+                       Message: ${message}
+                   `,
         });
+       
+
 
         // ✅ Email sent successfully, so no error message will appear
         document.getElementById("contact-name-input-field").value = "";
