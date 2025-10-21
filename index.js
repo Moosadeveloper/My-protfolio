@@ -24212,21 +24212,21 @@ const oM = [{
        
     }, {
         id: 2,
-        name: "Modren",
-        description: "A fast, responsive, and visually appealing website with seamless user experience. 🚀",
-        image: "images/projects/sharkie.jpg",
-        tags: ["javascript", "html", "css"],
-        liveview: "https://modren-web.web.app/",
-        github: "https://github.com/Moosadeveloper/Modren-Web",
+        name: "Mb-Phile",
+        description: "A smart movie finder app that lets users search any movie or series and instantly view its rating & trailer. 🍿",
+        image: "images/projects/sharkie.png",
+        tags: ["React", "api"],
+        liveview: "https://mb-phile.vercel.app/",
+        github: "https://github.com/Moosadeveloper/MOVIE-EXPLORER",
        
     }, {
         id: 3,
-        name: "FH-Fashion",
-        description: "A fast, secure, and user-friendly e-commerce website for seamless online shopping. 🛒🚀",
-        image: "images/projects/portfolio.jpg",
-        tags: [ "javascript", "html", "css"],
-        liveview: "https://fh-fashion.web.app/",
-        github: "https://github.com/Moosadeveloper/e-commuers",
+        name: "Meal-Finder",
+        description: "A simple meal finder app that shows ingredients, cooking time, and video tutorials. 🍲🍳",
+        image: "images/projects/portfolio.png",
+        tags: [ "React", "api"],
+        liveview: "https://repes-meal.vercel.app/",
+        github: "https://github.com/Moosadeveloper/Recipe-Finder",
         
     }, {
         id: 4,
@@ -24329,16 +24329,20 @@ const cM = [{
     width: "60%"
 }, {
     name: "ReactJS",
-    width: "65%"
+    width: "75%"
 }, {
     name: "Node-Express Js",
-    width: "85%"
+    width: "80%"
 }, {
     name: "MongoDB",
-    width: "90%"
+    width: "80%"
+},
+ {
+    name: "MongoDB",
+    width: "80%"
 }, {
-    name: "3D Modelling",
-    width: "60%"
+    name: "Python",
+    width: "50%"
 }];
 class hM {
     constructor() {

@@ -149,7 +149,7 @@
                 
                 <a tabindex="-1" target="_blank" href="https://github.com/Moosadeveloper"><img class="social-icon"
                         alt="Github Menu Icon" height="28" width="28" src="/icons/github-icon.png"></img></a>
-                <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/moosa-jan-088354353?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"> <img
+                <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/moosa-sharif-a3158a35b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"> <img
                         class="social-icon " alt="Linkedin Menu Icon" height="28" width="28"
                         src="/icons/linkedin-icon.png"></img></a>
                 <a tabindex="-1" href="mailto:moosadeveloper43@gmail.com"> <img class="social-icon" alt="Email Menu Icon"
@@ -185,6 +185,11 @@
                 <text class="landing-headline" y="135" x="5">am  Moosa.</text>
                 <text class="landing-subheading" x="10" y="185">
                     MERN Stack Developer building scalable  web apps.
+                    
+                </text>
+                <text class="landing-subheading" x="10" y="209">
+                   
+                    Python | AI | Learning & Creating daily.
                 </text>
 
                 <foreignObject x="8" y="250" height="100" width="300" requiredExtensions="http://www.w3.org/1999/xhtml">
@@ -405,7 +410,7 @@
                             <!--Third Text-->
                             <text x="88" y="33" class="about-text">Now, after professional coaching, Moosa is looking
                                 for</text>
-                            <text x="88" y="50" class="about-text">new challenges to work as a web developer.</text>
+                            <text x="88" y="50" class="about-text">new challenges to Learning Python & AI step by step.</text>
                         </g>
                     </g>
 
@@ -508,7 +513,7 @@
                             <label for="contact-email-input-field">Email :</label>
                             <span class="error-label hide">Please enter a valid email address.</span>
                         </div>
-                        <input id="contact-email-input-field" type="email" tabindex="-1">
+                        <input id="contact-email-input-field" type="email" tabindex="-1" required>
                     </div>
                     <div id="contact-message-input" class="input-container column">
                         <div class="row">
@@ -523,7 +528,7 @@
                         <a tabindex="-1" target="_blank" href="https://github.com/Moosadeveloper?tab=repositories"><img class="social-icon"
                                 alt="github contact social icon small 28x28" height="28" width="28"
                                 src="/icons/github-icon.png"></img></a>
-                        <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/moosa-jan-088354353?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+                        <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/moosa-sharif-a3158a35b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
                             <img class="social-icon " alt="linkedin contact social icon small 28x28" height="28"
                                 width="28" src="/icons/linkedin-icon.png"></img></a>
                         <a tabindex="-1" href="mailto:moosadeveloper43@gmail.com"> <img class="social-icon"
@@ -573,49 +578,99 @@
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
- emailjs.init("U-HnnbHQkr6QGUEsf");
-
-document.getElementById("contact-submit-button").addEventListener("click", async function(event) {
-    event.preventDefault();
-    const submitBtn = document.getElementById("contact-submit-button");
-
-    submitBtn.classList.add("disabled");
-
-    const fullName = document.getElementById("contact-name-input-field").value.trim();
-    const email = document.getElementById("contact-email-input-field").value.trim();
-    const message = document.getElementById("contact-message-input-field").value.trim();
-
-    if (!fullName || !email || !message) {
-        submitBtn.classList.remove("disabled");
-        return; // ✅ No message shown if fields are empty
-    }
-
-    try {
-        // Send email via EmailJS
-        await emailjs.send("service_ticq9lh", "template_h1ulmtd", {
-            from_name: fullName,
-            to_email: email,
-            message: `
-                       
-                       Email: ${email},
-                       Message: ${message}
-                   `,
-        });
-       
-
-
-        // ✅ Email sent successfully, so no error message will appear
-        document.getElementById("contact-name-input-field").value = "";
-        document.getElementById("contact-email-input-field").value = "";
-        document.getElementById("contact-message-input-field").value = "";
-
-    } catch (error) {
-        console.error("EmailJS Error:", error); // ✅ Error only logs in console, not on screen
-    } finally {
-        submitBtn.classList.remove("disabled");
-    }
-});
-
-</script>
+    emailjs.init("U-HnnbHQkr6QGUEsf");
+   
+   document.getElementById("contact-submit-button").addEventListener("click", async function(event) {
+       event.preventDefault();
+       const submitBtn = document.getElementById("contact-submit-button");
+   
+       const fullNameInput = document.getElementById("contact-name-input-field");
+       const emailInput = document.getElementById("contact-email-input-field");
+       const messageInput = document.getElementById("contact-message-input-field");
+   
+       const fullName = fullNameInput.value.trim();
+       const email = emailInput.value.trim();
+       const message = messageInput.value.trim();
+   
+       let hasError = false;
+   
+       // Name Validation
+       if (!fullName) {
+           showError(fullNameInput, "Please enter your name.");
+           hasError = true;
+       } else {
+           hideError(fullNameInput);
+       }
+   
+       // Email Validation
+       if (!email) {
+           showError(emailInput, "Please enter your email.");
+           hasError = true;
+       } else if (!validateEmail(email)) {
+           showError(emailInput, "Please enter a valid email address.");
+           hasError = true;
+       } else {
+           hideError(emailInput);
+       }
+   
+       // Message Validation
+       if (!message) {
+           showError(messageInput, "Please enter your message.");
+           hasError = true;
+       } else {
+           hideError(messageInput);
+       }
+   
+       if (hasError) return; // If any error exists, stop here.
+   
+       submitBtn.classList.add("disabled");
+   
+       try {
+           await emailjs.send("service_ticq9lh", "template_h1ulmtd", {
+               from_name: fullName,
+               to_email: email,
+               message: `Name: ${fullName},
+                Email: ${email},
+                
+                
+                
+                Message: ${message}`,
+           });
+   
+           alert("Message sent successfully!");
+   
+           // Clear fields if successfully sent
+           fullNameInput.value = "";
+           emailInput.value = "";
+           messageInput.value = "";
+           
+       } catch (error) {
+           console.error("EmailJS Error:", error);
+           alert("There was an error sending your message. Please try again.");
+       } finally {
+           submitBtn.classList.remove("disabled");
+       }
+   });
+   
+   // Email Validation Function (Proper Format Check)
+   function validateEmail(email) {
+       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+       return re.test(email);
+   }
+   
+   // Show Error Message
+   function showError(input, message) {
+       const errorLabel = input.parentElement.querySelector(".error-label");
+       errorLabel.textContent = message;
+       errorLabel.classList.remove("hide");
+   }
+   
+   // Hide Error Message
+   function hideError(input) {
+       const errorLabel = input.parentElement.querySelector(".error-label");
+       errorLabel.classList.add("hide");
+   }
+   </script>
+   
 
 </html>
